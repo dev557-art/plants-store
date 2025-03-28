@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- ...existing code... -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- ...existing code... -->
+</head>
+<body>
+    <!-- ...existing code... -->
+    <form method="POST" action="{{ url_for('set_currency') }}" class="currency-form">
+        <select name="currency" onchange="this.form.submit()" class="currency-select">
+            {% for code, info in currencies.items() %}
+                <option value="{{ code }}" {% if code == current_currency %}selected{% endif %}>
+                    {{ code }} ({{ info.symbol }})
+                </option>
+            {% endfor %}
+        </select>
+    </form>
+    <!-- ...existing code... -->
+</body>
+</html>
