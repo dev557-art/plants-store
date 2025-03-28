@@ -11,6 +11,14 @@ load_dotenv()
 
 app = Flask(__name__)
 csrf = CSRFProtect(app)
+
+app.config.update(
+    SESSION_COOKIE_SECURE=True,
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE='Lax',
+    PERMANENT_SESSION_LIFETIME=1800
+)
+
 app.config['SESSION_TYPE'] = 'filesystem'  # You can use other session types
 app.config['SECRET_KEY'] = 'your_secret_key'  # Change this!
 app.secret_key = os.getenv('SECRET_KEY', 'your-fallback-secret-key')
@@ -313,4 +321,4 @@ def catalog():
                          current_currency=currency)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
