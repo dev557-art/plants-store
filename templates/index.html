@@ -133,6 +133,7 @@
                         {% for code, details in currencies.items() %}
                         <li>
                             <form method="POST" action="{{ url_for('set_currency') }}" class="dropdown-item-form">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="currency" value="{{ code }}">
                                 <button type="submit" class="dropdown-item {% if code == current_currency %}active{% endif %}">
                                     {{ code }} ({{ details.symbol }})
