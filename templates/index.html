@@ -240,6 +240,7 @@
                                 <div class="mt-auto">
                                     <p class="h4 mb-3 text-primary">{{ plant_details[image]['symbol'] }}{{ plant_details[image]['price'] }}</p>
                                     <form action="{{ url_for('add_to_cart') }}" method="POST">
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                         <input type="hidden" name="image" value="{{ image }}">
                                         <button type="submit" class="btn btn-primary w-100">Add to Cart</button>
                                     </form>
