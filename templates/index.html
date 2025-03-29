@@ -233,19 +233,21 @@
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                     {% for image in plant_images %}
                     <div class="col">
-                        <div class="card custom-card h-100">
-                            <img src="{{ url_for('static', filename='images/' + image) }}" class="card-img-top" alt="{{ image }}">
+                        <div class="card custom-card position-relative">
+                            <img src="{{ url_for('static', filename='images/' + image) }}" 
+                                 class="card-img-top" 
+                                 alt="{{ image }}">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">{{ plant_details.get(image, {}).get('name', image) }}</h5>
                                 <p class="card-text">This is a beautiful plant that will brighten up your home.</p>
-                                <div class="mt-auto">
-                                    <p class="h4 mb-3 text-primary">{{ plant_details[image]['symbol'] }}{{ plant_details[image]['price'] }}</p>
-                                    <form action="{{ url_for('add_to_cart') }}" method="POST">
-                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                                        <input type="hidden" name="image" value="{{ image }}">
-                                        <button type="submit" class="btn btn-primary w-100">Add to Cart</button>
-                                    </form>
-                                </div>
+                                <p class="h4 text-primary mb-3">{{ plant_details[image]['symbol'] }}{{ plant_details[image]['price'] }}</p>
+                                <form action="{{ url_for('add_to_cart') }}" method="POST" class="mt-auto">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                    <input type="hidden" name="image" value="{{ image }}">
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        <i class="bi bi-cart-plus"></i> Add to Cart
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
