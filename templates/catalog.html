@@ -83,6 +83,7 @@
 
 <div class="navbar-item">
     <form method="POST" action="{{ url_for('set_currency') }}" class="form-inline">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <select name="currency" onchange="this.form.submit()" class="form-control">
             {% for code, details in currencies.items() %}
             <option value="{{ code }}" {% if code == current_currency %}selected{% endif %}>

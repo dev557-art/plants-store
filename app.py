@@ -16,7 +16,7 @@ app.config.update(
     SESSION_COOKIE_SECURE=True,
     SESSION_COOKIE_HTTPONLY=True,
     SESSION_COOKIE_SAMESITE='Lax',
-    PERMANENT_SESSION_LIFETIME=172800
+    
 )
 
 app.config['SESSION_TYPE'] = 'filesystem'  # You can use other session types
